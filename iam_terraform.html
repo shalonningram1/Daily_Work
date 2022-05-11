@@ -1,0 +1,24 @@
+
+Creating IAM Users w/ Terraform
+
+** ensure the credentails are set up correctl
+
+1. Create a provider.tf file
+    - this will hold information about the vendor, region etc
+2. Create a iam-user.tf file
+include resource type, resource name, & name
+
+** Example for a list of users **
+
+iam-user.tf
+rresource "aws_iam_user" "users" {
+    name = var.project-sapphire-users[count.index]
+    count = length(var.project-sapphire-users)
+}
+
+
+variables.tf
+variable "project-sapphire-users" {
+    type = list(string)
+    default = [ "mary", "jack", "jill", "mack", "buzz", "mater"]
+}
